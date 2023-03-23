@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/demo/household_ami/static/css/main.073c9b0a.css",
-    "main.js": "/demo/household_ami/static/js/main.74cac895.js",
-    "static/media/logo.svg": "/demo/household_ami/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/demo/household_ami/index.html",
-    "main.073c9b0a.css.map": "/demo/household_ami/static/css/main.073c9b0a.css.map",
-    "main.74cac895.js.map": "/demo/household_ami/static/js/main.74cac895.js.map"
+    "main.css": "/household_ami/static/css/main.073c9b0a.css",
+    "main.js": "/household_ami/static/js/main.d0b67569.js",
+    "static/media/logo.svg": "/household_ami/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/household_ami/index.html",
+    "main.073c9b0a.css.map": "/household_ami/static/css/main.073c9b0a.css.map",
+    "main.d0b67569.js.map": "/household_ami/static/js/main.d0b67569.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.74cac895.js"
+    "static/js/main.d0b67569.js"
   ]
 }
