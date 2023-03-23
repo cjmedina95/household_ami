@@ -1,7 +1,7 @@
 {
   "name": "household_ami",
   "version": "0.1.0",
-  "homepage": "https://cjmedina95.github.io/demo/household_ami",
+  "homepage": "https://cjmedina95.github.io/household_ami",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
