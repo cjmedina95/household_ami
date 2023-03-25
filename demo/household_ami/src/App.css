@@ -1,3 +1,32 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #212330;
+  color: #E6E6E6;
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  border-radius: 10px;
+  border: solid 2px #878fb8;
+  margin: 30px;
+  background-color: rgba(255,255,255,0.1);
+  color: #FFFFFF;
+  padding: 64px;
+  max-width: 700px;
+}
+
+h1 {
+  text-align: center;
+}
+
 .table-separator {
   padding-right: 32px;
 }
@@ -13,10 +42,39 @@ caption {
 }
 
 table {
+  justify-content: center;
   text-align: center;
   width: 512px;
+  margin-right: 92px;
 }
 
 .table-side {
   width: 92px;
+}
+
+#ami-chart {
+  display: flex;
+  justify-content: center;
+  margin-bottom: auto;
+}
+
+#steps {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  padding-bottom: 64px;
+}
+
+#btn-submit {
+  margin-top: 32px;
+  padding-left: 64px;
+  padding-right: 64px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  text-align: center;
+}
+
+#status {
+  padding-top: 32px;
 }
