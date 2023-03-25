@@ -8,6 +8,19 @@ import Status from './components/Status'
 import Submit from './components/Submit'
 import React, { useState } from 'react'
 
+
+// The chart const is an expandable list of States where solar loans are offered.
+// Expanding the app is as simple as adding a new state in the following format:
+// {
+//    name:
+//    id:
+//    sizes: {
+//      1: income
+//    }
+// }
+// 
+// Where sizes has the following key-value pairs-- { household_size: "income" }
+// and id is a unique identifier for each state.
 function App() {
   const chart = [
     {

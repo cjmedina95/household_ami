@@ -8,5 +8,5 @@ export function formatAsUSD(number) {
   }
   
   export function unformatUSD(value) {
-    return parseFloat(value.replace(/[^0-9.]/g, ''));
+    return parseFloat(value.replace(/[^0-9.]/g, '')); // Reject any non-digit input.
   }

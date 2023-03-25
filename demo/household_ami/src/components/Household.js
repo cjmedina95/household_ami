@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 
+// useEffect() is used here to allow the DOM to load before
+// attempting to use document.querySelector().
 function Household({size, onChange}) {
     useEffect(() => {
       const value = document.querySelector("#value");

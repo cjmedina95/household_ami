@@ -1,5 +1,7 @@
 import { unformatUSD } from './../helpers/FormatUSD';
 
+// Eligibility is calculated once the submit button is pressed.
+// The ami is retrieved from the array of state objects in App.js.
 function Submit({state, size, income, setEligibility, chart}) {
     function checkEligibility(state, size, income) {
       const selectedState = chart.filter(obj => obj.name === state)[0];

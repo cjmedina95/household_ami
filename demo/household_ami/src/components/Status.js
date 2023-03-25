@@ -1,3 +1,5 @@
+// Status.js takes the eligibility returned from the state update from Submit.js,
+// then updates the web app accordingly.
 function Status({eligibility}) {
     if (eligibility === "Eligible") {
       return (
