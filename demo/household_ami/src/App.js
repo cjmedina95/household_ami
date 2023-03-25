@@ -1,139 +1,12 @@
 import './App.css';
-import React, { useEffect } from 'react'
-
-function Household({size}) {
-  useEffect(() => {
-    const value = document.querySelector("#value");
-    const input = document.querySelector("#household_input");
-    value.textContent = input.value;
-    input.addEventListener("input", (e) => {
-      value.textContent = e.target.value;
-    });
-  }, []);
-
-  return (
-    <div className="step">
-      <h2>Step 2: Choose your household size</h2>
-      <input type="range" min={1} max={size} id="household_input" />
-      <p>Household Size: <output id="value"></output></p>
-    </div>
-  );
-}
-
-function Income() {
-  function formatAsUSD(number) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 2
-    }).format(number);
-  }
-
-  function unformatUSD(value) {
-    return parseFloat(value.replace(/[^0-9.]/g, ''));
-  }
-
-  useEffect(() => {
-    const usdInput = document.getElementById('usdInput');
-
-    usdInput.addEventListener('input', (event) => {
-      const unformattedValue = unformatUSD(event.target.value);
-      const formattedValue = formatAsUSD(unformattedValue);
-      event.target.value = formattedValue;
-      if (event.target.value === '$NaN') { event.target.value = ""}
-      event.target.setSelectionRange(formattedValue.length, formattedValue.length);
-    });
-
-    usdInput.addEventListener('keypress', (event) => {
-      const charCode = event.key;
-      if (!(charCode >= '0' && charCode <= '9') && charCode !== '.' && charCode !== ',') {
-        event.preventDefault();
-      }
-
-    });
-  }, []);
-
-  return (
-    <div className="step">
-      <h2>Step 3: Enter your annual income</h2>
-      <input type="text" id="usdInput" placeholder="Enter amount"></input>
-    </div>
-  )
-}
-
-function States({states}) {
-  return (
-    <div className="step">
-      <h2>Step 1: Pick your State</h2>
-      <select name="states" id="states">
-        {
-          states.map(state => <option value={state.name} key={state.id}>{state.name}</option>)
-        }
-      </select>
-    </div>
-
-  );
-}
-
-function TableRow({ ami, id }) {
-  return (
-    <tr>
-      <td>{ id }</td>
-      {
-        ami.map(({value}, index) => <td key={`value-${index}`} className="cell-ami">{value}</td>)
-      }
-    </tr>
-  )
-}
-
-function Chart({states}) {
-  const maxFamilySize = 8;
-
-  return (
-    <div id="ami-chart">
-      <table>
-        <caption><strong>100% of Area Median Income (AMI)</strong></caption>
-        <tbody>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            {
-              states.map(state => <th key={state.id}>{state.name}</th>)
-            }
-          </tr>
-          <>
-            <tr>
-              <td rowSpan={maxFamilySize + 1} className="table-side"><strong>Household Size</strong></td>
-            </tr>
-
-            {Array.from(Array(maxFamilySize), (_, i) => i + 1).map(key => {
-              const ami = states.map(state => ({ value: state.sizes[key] }));
-              return <TableRow key={key} ami={ami} id={key} />
-            })}
-          </>
-        </tbody>
-      </table>
-    </div>
-
-  );
-}
-
-function Submit() {
-  return (
-    <button id="btn-submit">
-      Submit
-    </button>
-  );
-}
-
-function Status() {
-  return (
-    <div id="status">
-      /* Eligibility Placeholder */
-    </div>
-  );
-}
+import { unformatUSD } from './helpers/FormatUSD';
+import States from './components/States'
+import Household from './components/Household'
+import Income from './components/Income'
+import Chart from './components/Chart'
+import Status from './components/Status'
+import Submit from './components/Submit'
+import React, { useState } from 'react'
 
 function App() {
   const chart = [
@@ -181,15 +54,36 @@ function App() {
     }
   ]
 
+  const [stateChoice, setStateChoice] = useState(chart[0].name);
+  const [houseSize, setHouseSize] = useState(1);
+  const [income, setIncome] = useState(NaN);
+  const [eligibility, setEligibility] = useState(undefined);
+
+  const handleStateChange = (event) => {
+    setStateChoice(event.target.value);
+  }
+
+  const handleSizeChange = (event) => {
+    setHouseSize(event.target.value);
+  }
+
+  const handleIncomeChange = (event) => {
+    setIncome(unformatUSD(event.target.value));
+  }
+
   return (
     <main>
       <h1>AMI Eligibility Calculator</h1>
       <section id="steps">
-        <States states={chart}/>
-        <Household size={8}/>        
-        <Income />
-        <Submit />
-        <Status />
+        <States states={chart} onChange={handleStateChange}/>
+        <Household size={8} onChange={handleSizeChange}/>        
+        <Income onChange={handleIncomeChange}/>
+        <Submit state={stateChoice} 
+                size={houseSize} 
+                income={income} 
+                setEligibility={setEligibility}
+                chart={chart}/>
+        <Status eligibility={eligibility}/>
       </section>
       <Chart states={chart}/>
     </main>

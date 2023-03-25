@@ -78,3 +78,30 @@ table {
 #status {
   padding-top: 32px;
 }
+
+#status-eligible {
+  margin-top: 32px;
+  padding: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border: 2px solid #00ff00;
+  border-radius: 8px;
+}
+
+#status-ineligible {
+  margin-top: 32px;
+  padding: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border: 2px solid #ff0000;
+  border-radius: 8px;
+}
+
+#status-unknown {
+  margin-top: 32px;
+  padding: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border: 2px solid #ffff00;
+  border-radius: 8px;
+}
